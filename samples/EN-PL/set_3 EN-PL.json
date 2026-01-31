@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "Name": "Mindset & Life Vocabulary",
+  "Description": "Advanced English words related to mindset, psychology and personal development",
+  "LanguageCode": "EN",
+  "CategoryName": "Self Development",
+  "Terms": [
+    {
+      "TermName": "Resilience",
+      "Definition": "Zdolność do radzenia sobie z trudnościami"
+    },
+    {
+      "TermName": "Mindfulness",
+      "Definition": "Świadoma obecność i uważność"
+    },
+    {
+      "TermName": "Intrinsic",
+      "Definition": "Wewnętrzny, wynikający z samej natury"
+    },
+    {
+      "TermName": "Fulfillment",
+      "Definition": "Poczucie spełnienia"
+    },
+    {
+      "TermName": "Self-awareness",
+      "Definition": "Świadomość własnych emocji i zachowań"
+    },
+    {
+      "TermName": "Cognitive bias",
+      "Definition": "Błąd poznawczy w myśleniu"
+    },
+    {
+      "TermName": "Detachment",
+      "Definition": "Zdolność do emocjonalnego dystansu"
+    },
+    {
+      "TermName": "Authenticity",
+      "Definition": "Autentyczność, bycie sobą"
+    }
+  ]
+}

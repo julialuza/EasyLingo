@@ -1,0 +1,17 @@
+{
+  "Version": 1,
+  "Name": "Academic English",
+  "Description": "High-level English vocabulary commonly used in professional and academic contexts.",
+  "LanguageCode": "EN",
+  "CategoryName": "Professional English",
+  "Terms": [
+    { "TermName": "Feasibility", "Definition": "The practicality or possibility of something being achieved" },
+    { "TermName": "Scalability", "Definition": "The ability of a system to handle increased demand" },
+    { "TermName": "Stakeholder", "Definition": "A person or group with an interest in a project or organization" },
+    { "TermName": "Paradigm shift", "Definition": "A fundamental change in approach or underlying assumptions" },
+    { "TermName": "Data-driven", "Definition": "Guided by data rather than intuition" },
+    { "TermName": "Interdisciplinary", "Definition": "Involving two or more academic disciplines" },
+    { "TermName": "Implementation", "Definition": "The process of putting a plan into action" },
+    { "TermName": "Benchmark", "Definition": "A standard or point of reference for comparison" }
+  ]
+}

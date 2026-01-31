@@ -1,0 +1,17 @@
+{
+  "Version": 1,
+  "Name": "Society and Influence",
+  "Description": "Advanced vocabulary describing social structures, power, and influence.",
+  "LanguageCode": "EN",
+  "CategoryName": "Society",
+  "Terms": [
+    { "TermName": "Hegemony", "Definition": "Dominance or leadership by one group over others" },
+    { "TermName": "Ideology", "Definition": "A system of ideas that form the basis of political or economic theory" },
+    { "TermName": "Grassroots movement", "Definition": "A movement driven by ordinary people rather than leaders" },
+    { "TermName": "Authoritarianism", "Definition": "A system of government with strong central power and limited freedoms" },
+    { "TermName": "Social stratification", "Definition": "The classification of people into social classes" },
+    { "TermName": "Marginalization", "Definition": "The process of pushing a group to the edge of society" },
+    { "TermName": "Policy reform", "Definition": "Changes made to improve existing laws or regulations" },
+    { "TermName": "Collective consciousness", "Definition": "Shared beliefs and moral attitudes within a society" }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "Name": "Untranslatable Feelings",
+  "Description": "Advanced English words describing emotions and situations that have no direct Polish equivalent",
+  "LanguageCode": "EN",
+  "CategoryName": "Advanced Vocabulary",
+  "Terms": [
+    {
+      "TermName": "Serendipity",
+      "Definition": "Szczęśliwy zbieg okoliczności prowadzący do nieoczekiwanego odkrycia"
+    },
+    {
+      "TermName": "Sonder",
+      "Definition": "Uświadomienie sobie, że każdy człowiek ma równie złożone życie jak my"
+    },
+    {
+      "TermName": "Limerence",
+      "Definition": "Intensywne, obsesyjne zakochanie"
+    },
+    {
+      "TermName": "Ethereal",
+      "Definition": "Delikatny, ulotny, niemal nierealny"
+    },
+    {
+      "TermName": "Ineffable",
+      "Definition": "Niemożliwy do opisania słowami"
+    },
+    {
+      "TermName": "Melancholy",
+      "Definition": "Cicha, refleksyjna forma smutku"
+    },
+    {
+      "TermName": "Epiphany",
+      "Definition": "Nagłe, głębokie zrozumienie czegoś"
+    },
+    {
+      "TermName": "Bittersweet",
+      "Definition": "Jednocześnie radosny i smutny"
+    }
+  ]
+}

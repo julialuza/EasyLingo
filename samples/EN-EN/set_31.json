@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "Name": "Advanced Reasoning",
+  "Description": "Advanced vocabulary related to thinking, reasoning, and intelligence.",
+  "LanguageCode": "EN",
+  "CategoryName": "Advanced Vocabulary",
+  "Terms": [
+    {
+      "TermName": "Cognitive bias",
+      "Definition": "A systematic error in thinking that affects decisions and judgments"
+    },
+    {
+      "TermName": "Abstract reasoning",
+      "Definition": "The ability to think about concepts that are not concrete or physical"
+    },
+    {
+      "TermName": "Critical thinking",
+      "Definition": "The objective analysis and evaluation of an issue to form a judgment"
+    },
+    {
+      "TermName": "Metacognition",
+      "Definition": "Awareness and understanding of one\u2019s own thought processes"
+    },
+    {
+      "TermName": "Inference",
+      "Definition": "A conclusion reached based on evidence and reasoning"
+    },
+    {
+      "TermName": "Fallacy",
+      "Definition": "A mistaken belief or error in reasoning"
+    },
+    {
+      "TermName": "Perception",
+      "Definition": "The way in which something is understood or interpreted"
+    },
+    {
+      "TermName": "Intellectual humility",
+      "Definition": "Recognizing the limits of one\u2019s knowledge"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "Name": "Smart Conversation English",
+  "Description": "Advanced English vocabulary used in deep discussions, essays and intellectual conversations",
+  "LanguageCode": "EN",
+  "CategoryName": "Advanced English",
+  "Terms": [
+    {
+      "TermName": "Nuance",
+      "Definition": "Subtelna różnica znaczeniowa"
+    },
+    {
+      "TermName": "Paradox",
+      "Definition": "Pozorna sprzeczność zawierająca głębszą prawdę"
+    },
+    {
+      "TermName": "Ambiguous",
+      "Definition": "Wieloznaczny, niejednoznaczny"
+    },
+    {
+      "TermName": "Coherent",
+      "Definition": "Spójny i logiczny"
+    },
+    {
+      "TermName": "Substantial",
+      "Definition": "Znaczący, istotny"
+    },
+    {
+      "TermName": "Hypothetical",
+      "Definition": "Hipotetyczny, teoretyczny"
+    },
+    {
+      "TermName": "Counterproductive",
+      "Definition": "Przynoszący skutek odwrotny do zamierzonego"
+    },
+    {
+      "TermName": "Perspective",
+      "Definition": "Punkt widzenia"
+    }
+  ]
+}
