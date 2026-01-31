@@ -1,0 +1,159 @@
+﻿<UserControl x:Class="EasyLingo.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignWidth="1100"
+             d:DesignHeight="700">
+
+    <!-- TŁO -->
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                <GradientStop Color="#FF030A13"/>
+                <GradientStop Color="#FF142836" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <!-- GŁÓWNY UKŁAD -->
+        <Grid Margin="50,50,50,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- POWITANIE -->
+            <TextBlock Text="{Binding WelcomeText}"
+                       FontSize="32"
+                       Foreground="#FFA8E5FC"
+                       FontWeight="SemiBold"
+                       Margin="10,-33,0,33"/>
+
+            <!-- OPIS -->
+            <TextBlock Grid.Row="1"
+                       Margin="10,15,0,30"
+                       Text="{Binding SubtitleText}"
+                       FontSize="16"
+                       Foreground="#FFA8E5FC"/>
+
+            <!-- BLOKI STATYSTYK -->
+            <Grid Grid.Row="2" Margin="0,10,0,30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <!-- TWOJE POSTĘPY -->
+                <Border Grid.Column="0"
+                        Margin="0,0,20,0"
+                        Background="#FF132735"
+                        CornerRadius="20"
+                        Padding="20">
+
+                    <StackPanel>
+                        <TextBlock Text="{Binding YourProgressTitle}"
+                                   FontSize="24"
+                                   Foreground="#FFA8E5FC"/>
+
+                        <TextBlock Text="{Binding OverallProgressPercent, StringFormat={}{0}%}"
+                                   FontSize="56"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,10,0,0"
+                                   Foreground="#FFA8E5FC"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- UKOŃCZONE ZESTAWY -->
+                <Border Grid.Column="1"
+                        Background="#FF132735"
+                        CornerRadius="20"
+                        Padding="20">
+
+                    <StackPanel>
+                        <TextBlock Text="{Binding CompletedSetsTitle}"
+                                   FontSize="24"
+                                   Foreground="#FFA8E5FC"/>
+
+                        <TextBlock Text="{Binding CompletedSetsText}"
+                                   FontSize="56"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,10,0,0"
+                                   Foreground="#FFA8E5FC"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- KONTYNUUJ NAUKĘ -->
+            <Border Grid.Row="3"
+                    Background="#FF132735"
+                    CornerRadius="20"
+                    Padding="20">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="{Binding ContinueTitle}"
+                               FontSize="24"
+                               Foreground="#FFA8E5FC"
+                               Margin="5,0,0,10"/>
+
+                    <!-- KARTY -->
+                    <ItemsControl Grid.Row="1"
+                                  ItemsSource="{Binding ContinueSets}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="3"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Height="160"
+                                        Margin="10"
+                                        Background="#FF0D1E29"
+                                        CornerRadius="20">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Text="{Binding Name}"
+                                                   FontSize="18"
+                                                   Foreground="White"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"/>
+
+                                        <ProgressBar Grid.Row="1"
+                                                     Value="{Binding ProgressPercent}"
+                                                     Maximum="100"
+                                                     Height="10"
+                                                     Margin="20,0"
+                                                     Background="#FF132735"
+                                                     Foreground="#FFA8E5FB"/>
+
+                                        <TextBlock Grid.Row="2"
+                                                   Text="{Binding ProgressPercent, StringFormat={}{0}%}"
+                                                   Foreground="White"
+                                                   FontWeight="Bold"
+                                                   HorizontalAlignment="Center"
+                                                   Margin="0,6"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

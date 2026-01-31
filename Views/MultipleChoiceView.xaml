@@ -1,0 +1,176 @@
+﻿<UserControl x:Class="EasyLingo.Views.MultipleChoiceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="900">
+
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF030912"/>
+            <GradientStop Color="#FF132735" Offset="1"/>
+        </LinearGradientBrush>
+    </UserControl.Background>
+
+    <UserControl.Resources>
+
+        <SolidColorBrush x:Key="OptNormalBg" Color="#132735"/>
+        <SolidColorBrush x:Key="OptNormalFg" Color="#FFFFFF"/>
+
+        <SolidColorBrush x:Key="OptCorrectBg" Color="#233B33"/>
+        <SolidColorBrush x:Key="OptCorrectBorder" Color="#4FA07A"/>
+
+        <SolidColorBrush x:Key="OptWrongBg" Color="#3B262B"/>
+        <SolidColorBrush x:Key="OptWrongBorder" Color="#B06A78"/>
+
+        <Style x:Key="OptionButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="58"/>
+            <Setter Property="Margin" Value="0,0,0,12"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="{StaticResource OptNormalFg}"/>
+            <Setter Property="Background" Value="{StaticResource OptNormalBg}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontFamily" Value="Bahnschrift"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="14"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="12">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding State}" Value="Correct">
+                    <Setter Property="Background" Value="{StaticResource OptCorrectBg}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource OptCorrectBorder}"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding State}" Value="Wrong">
+                    <Setter Property="Background" Value="{StaticResource OptWrongBg}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource OptWrongBorder}"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ModeToggleStyle" TargetType="ToggleButton">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="MinWidth" Value="190"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="Foreground" Value="#FFA8E5FC"/>
+            <Setter Property="Background" Value="#FF0D1E29"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="FontFamily" Value="Bahnschrift"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="999" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Grid.Row="0" Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    Content="← WRÓĆ"
+                    Command="{Binding BackCommand}"
+                    Width="110" Height="35"
+                    Background="#FF0D1E29" Foreground="#FFA8E5FC"
+                    BorderBrush="{x:Null}" FontFamily="Bahnschrift"/>
+
+            <StackPanel Grid.Column="1" Orientation="Vertical" Margin="16,0,0,0">
+                <TextBlock Text="Quiz ABC"
+                           Foreground="#FFA8E5FC"
+                           FontSize="26"
+                           FontWeight="SemiBold"/>
+
+                <!-- Toggle kierunku -->
+                <ToggleButton Style="{StaticResource ModeToggleStyle}"
+                              Margin="0,8,0,0"
+                              IsChecked="{Binding AskTermToDefinition, Mode=TwoWay}"
+                              Content="{Binding ModeLabel}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Right">
+                <TextBlock Text="{Binding ProgressText}"
+                           Foreground="#FFA8E5FC"
+                           FontSize="14"
+                           HorizontalAlignment="Right"/>
+                <TextBlock Text="{Binding ScoreText}"
+                           Foreground="#FFA8E5FC"
+                           FontSize="14"
+                           HorizontalAlignment="Right"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Card -->
+        <Border Grid.Row="1" Background="#FF0D1E29" CornerRadius="20" Padding="24">
+            <StackPanel>
+
+                <TextBlock Text="{Binding Question}"
+                           Foreground="White"
+                           FontSize="28"
+                           FontWeight="SemiBold"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,18"/>
+
+                <ItemsControl ItemsSource="{Binding Options}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource OptionButtonStyle}"
+                                    Content="{Binding Text}"
+                                    IsEnabled="{Binding DataContext.CanAnswer, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    Command="{Binding DataContext.AnswerCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <TextBlock Text="{Binding Feedback}"
+                           Foreground="White"
+                           Opacity="0.9"
+                           FontSize="16"
+                           Margin="0,10,0,0"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Footer -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,16,0,0">
+            <Button Content="{Binding NextButtonText}"
+                    Command="{Binding NextCommand}"
+                    Width="220" Height="44"
+                    Background="#FF0D1E29" Foreground="#FFA8E5FC"
+                    BorderBrush="{x:Null}" FontFamily="Bahnschrift"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,194 @@
+﻿<UserControl x:Class="EasyLingo.Views.SetsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EasyLingo.Views"
+             xmlns:vm="clr-namespace:EasyLingo.ViewModels"
+             xmlns:conv="clr-namespace:EasyLingo.Infrastructure.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <UserControl.Resources>
+        <!-- Converter do porównania SetId z SelectedSetId -->
+        <conv:IntEqualsConverter x:Key="IntEqualsConverter" />
+    </UserControl.Resources>
+
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF030912"/>
+            <GradientStop Color="#FF132735" Offset="1"/>
+        </LinearGradientBrush>
+    </UserControl.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Nagłówek -->
+        <TextBlock Text="Zestawy słówek"
+                   FontSize="32"
+                   FontWeight="SemiBold"
+                   Foreground="#FFA8E5FC"
+                   Margin="50,20,0,20"/>
+
+        <!-- Główna ramka z zestawami -->
+        <Border Grid.Row="1"
+                Background="#FF132735"
+                CornerRadius="20"
+                Margin="50,0,50,50"
+                Padding="20">
+
+            <StackPanel>
+                <!-- ScrollViewer z kartami -->
+                <Grid Width="660" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="110"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ComboBox
+                            Margin="-180,2,0,2"
+                            ItemsSource="{Binding Categories}"
+                            SelectedItem="{Binding SelectedCategory}"
+                            DisplayMemberPath="Name"
+                            Background="#FF0D1E29"
+                            Foreground="#FF0D1E29"
+                            BorderBrush="{x:Null}" Width="200" Height="22"/>
+                    <Button Grid.Column="2"
+                        Content="IMPORT"
+                        Background="#FF0D1E29"
+                        Foreground="#FFA8E5FC"
+                        BorderBrush="{x:Null}"
+                        Command="{Binding ImportJsonCommand}"
+                        Width="100"
+                        HorizontalAlignment="Right"/>
+                    <Button Grid.Column="3"
+                        Content="EXPORT"
+                        Background="#FF0D1E29"
+                        Foreground="#FFA8E5FC"
+                        BorderBrush="{x:Null}"
+                        Command="{Binding ExportJsonCommand}"
+                        Width="100"
+                        HorizontalAlignment="Right"
+                        Margin="8,0,0,0"/>
+                    <Button x:Name="dodajBtn"
+                            Content="DODAJ ZESTAW"
+                            Background="#FF0D1E29"
+                            Foreground="#FFA8E5FC"
+                            Command="{Binding AddSetCommand}"
+                            FontFamily="Bahnschrift"
+                            BorderBrush="{x:Null}" Margin="8,0,-120,0" Grid.Column="4" Width="100" HorizontalAlignment="Right"/>
+
+                </Grid>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled"
+                              Height="440" Margin="0,0,0,0">
+
+                    <ItemsControl ItemsSource="{Binding Sets}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="3"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Background="Transparent"
+                                        BorderThickness="0"
+                                        Padding="0"
+                                        Command="{Binding DataContext.OpenSetCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                        CommandParameter="{Binding SetId}">
+
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <EventSetter Event="PreviewMouseRightButtonDown" Handler="OnSetRightClick"/>
+                                        </Style>
+                                    </Button.Style>
+
+                                    <Border Width="280"
+                                            Height="190"
+                                            Background="#FF0D1E29"
+                                            CornerRadius="20"
+                                            Margin="10">
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                                <Setter Property="Opacity" Value="1"/>
+
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                                                        <Setter Property="BorderThickness" Value="2"/>
+                                                        <Setter Property="BorderBrush" Value="#FFA8E5FC"/>
+                                                    </DataTrigger>
+
+                                                    <DataTrigger Value="True">
+                                                        <DataTrigger.Binding>
+                                                            <MultiBinding Converter="{StaticResource IntEqualsConverter}">
+                                                                <Binding Path="SetId"/>
+                                                                <Binding Path="DataContext.SelectedSetId"
+                                                                         RelativeSource="{RelativeSource AncestorType={x:Type ItemsControl}}"/>
+                                                            </MultiBinding>
+                                                        </DataTrigger.Binding>
+                                                        <Setter Property="BorderThickness" Value="3"/>
+                                                        <Setter Property="BorderBrush" Value="#FF2E8BC0"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <TextBlock Text="{Binding Name}"
+                                                       FontSize="16"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       Grid.Row="0"/>
+
+                                            <TextBlock Text="{Binding CategoryName}"
+                                                       FontSize="12"
+                                                       Foreground="#FFB9DDF2"
+                                                       Opacity="0.85"
+                                                       HorizontalAlignment="Center"
+                                                       Margin="0,6,0,10"
+                                                       Grid.Row="1"/>
+
+                                            <ProgressBar Value="{Binding ProgressPercent}"
+                                                         Maximum="100"
+                                                         Height="10"
+                                                         Margin="20,0"
+                                                         Background="#FF132735"
+                                                         Foreground="#FFA8E5FB"
+                                                         Grid.Row="2"/>
+
+                                            <TextBlock Text="{Binding ProgressPercent, StringFormat=\{0\}%}"
+                                                       Foreground="White"
+                                                       FontWeight="Bold"
+                                                       HorizontalAlignment="Center"
+                                                       Margin="0,6"
+                                                       Grid.Row="3"/>
+                                        </Grid>
+                                    </Border>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
